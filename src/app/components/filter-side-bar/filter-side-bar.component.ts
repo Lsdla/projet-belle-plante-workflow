@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import * as _ from 'underscore';
 
 @Component({
@@ -15,6 +16,10 @@ export class FilterSideBarComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  onFormSubmit(priceForm: NgForm){
+    console.log(priceForm)
   }
 
   public onChangeValue(eventValue: any): void {
