@@ -22,6 +22,7 @@ export class AvisBarComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    return;
   }
 
   onMouseOver(index: number) {

@@ -15,6 +15,7 @@ export class FilterSideBarComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    return;
   }
 
   public onChangeValue(eventValue: any): void {

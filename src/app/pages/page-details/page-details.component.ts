@@ -10,6 +10,7 @@ export class PageDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    return;
   }
 
 }

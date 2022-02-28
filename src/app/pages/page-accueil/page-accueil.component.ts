@@ -32,7 +32,7 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
  }
 
  ngOnInit(): void {
-
+  return;
  }
 
  // methode de cycle de vie de mon composant qui est executée juste avant que l'instance de mon composant soit détruite
