@@ -13,7 +13,7 @@ export class CardPlantComponent implements OnInit {
   constructor() {
    }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

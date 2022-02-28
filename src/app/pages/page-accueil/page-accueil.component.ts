@@ -1,4 +1,5 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit, Output } from '@angular/core';
+import { $ } from 'protractor';
 import { Observable, Subscription } from 'rxjs';
 import { PlantService } from 'src/app/services/plant.service';
 import * as _ from 'underscore';
@@ -8,7 +9,7 @@ import * as _ from 'underscore';
   templateUrl: './page-accueil.component.html',
   styleUrls: ['./page-accueil.component.scss']
 })
-export class PageAccueilComponent implements OnInit {
+export class PageAccueilComponent implements OnInit, OnDestroy {
  // private data!: any[]; same as below
  private data: any[] | undefined;
  public listCategories!: string[];
@@ -22,10 +23,10 @@ export class PageAccueilComponent implements OnInit {
      this.data = response;
      this.listCategories = _.uniq(this.data.map(x => x.product_breadcrumb_label));
      console.log(this.listCategories);
-     
+
      response.length = 40; // juste pour le dev dans notre contexte d'apprentissage
      this.listProduct = [...response];
-   })
+   });
 
    this.plantService.getListProductsChaud();
  }

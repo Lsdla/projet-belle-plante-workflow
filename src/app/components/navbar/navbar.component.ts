@@ -12,10 +12,10 @@ export class NavbarComponent implements OnInit {
 
   constructor(private plantService: PlantService) {
     this.title = '🪴 La Belle Plante';
-    
+
     this.plantService.subjectListProduct$.subscribe(data => {
       this.lengthListProduct = data.length;
-    })
+    });
   }
 
   ngOnInit(): void {
