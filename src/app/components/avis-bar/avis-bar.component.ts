@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AvisBarComponent implements OnInit {
   public statesStar: any[];
-  
+
   constructor() {
-    this.statesStar = new Array(5)
+    this.statesStar = new Array(5);
    }
 
   ngOnInit(): void {
