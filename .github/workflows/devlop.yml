@@ -1,5 +1,5 @@
-name: CI-CD
-on: 
+name: CI-CD - Devlop
+on:
   push:
     branches: [ devlop ]
 
@@ -10,57 +10,57 @@ jobs:
   test:
 
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Use Node.js
       uses: actions/setup-node@v2
-      with: 
+      with:
         node-version: '16.x'
 
     - uses: actions/checkout@v2
 
     - name: Install dependencies
       run: npm install
-    
+
     - name: lint
       run: npm run lint
-    
+
     - name: Unit tests
       run: npm run test
-    
-  build: 
+
+  build:
     needs: test
     runs-on: ubuntu-latest
 
     steps:
     - name: Use Node.js
       uses: actions/setup-node@v2
-      with: 
+      with:
         node-version: '16.x'
 
     - uses: actions/checkout@v2
 
     - name: Install dependencies
       run: npm install
-      
+
     - name: Build app
       run: npm run build:prod
-    
+
     - name: Upload artifact
       uses: actions/upload-artifact@v2
-      with: 
+      with:
         name: devops-test-${{ github.run_id }}-${{ github.run_number }}
         path: ./dist/devops-test
 
-  deploy: 
+  deploy:
     needs: build
     runs-on: ubuntu-latest
 
-    steps: 
+    steps:
     - name: Download artifact
       uses: actions/download-artifact@v2
-      with: 
-        name: devops-test-${{ github.run_id }}-${{ github.run_number }} 
+      with:
+        name: devops-test-${{ github.run_id }}-${{ github.run_number }}
         path: './build'
-    
+
     #  TO COMPLETE TO DEPLOY
