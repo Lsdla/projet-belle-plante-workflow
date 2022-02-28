@@ -1,0 +1,12 @@
+.details-container{
+  display: flex;
+  height: auto;
+  .img-container{
+    height: auto;
+    width: 40%;
+    margin: 1rem;
+    .img{
+      height: 100%;
+    }
+  }
+}
