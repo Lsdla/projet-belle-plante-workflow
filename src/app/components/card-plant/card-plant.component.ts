@@ -1,6 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { PlantService } from 'src/app/services/plant.service';
 
 @Component({
   selector: 'app-card-plant',
