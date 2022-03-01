@@ -63,7 +63,3 @@ jobs:
           heroku_app_name: "la-belle-plante-workflow" #Must be unique in Heroku
           heroku_email: "ledijiv830@shackvine.com"
     #  TO COMPLETE TO DEPLOY
-    - uses: actions/checkout@v2
-    
-    - name: Install Angular
-      run: npm i @angular/cli
