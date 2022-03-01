@@ -30,8 +30,7 @@ import { AvisBarComponent } from './components/avis-bar/avis-bar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
-  ],
+    HttpClientModule  ],
   providers: [],
   bootstrap: [AppComponent]
 })

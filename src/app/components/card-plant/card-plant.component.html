@@ -4,7 +4,7 @@
 
     <img src="{{plant.product_url_picture}}" class="card-img-top" alt="image de {{plant.product_name}}">
     <div class="card-body">
-        <h6 class="card-title"> {{plant.product_name}} </h6>
+        <h6 class="card-title" [routerLink]="['/list_products', plant?.product_id]"> {{plant.product_name}} </h6>
         <div class="card-content">
             <app-avis-bar></app-avis-bar>
         </div>
