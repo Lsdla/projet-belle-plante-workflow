@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, Output } from '@angular/core';
 import { $ } from 'protractor';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { PlantService } from 'src/app/services/plant.service';
 import * as _ from 'underscore';
 
@@ -15,6 +15,9 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
  public listCategories!: string[];
  private subListProduct: Subscription;
  public listProduct!: any[];
+ min;
+ max;
+ subject$ = new Subject();
 
  constructor(private plantService: PlantService) {
 
@@ -23,7 +26,6 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
      this.data = response;
      this.listCategories = _.uniq(this.data.map(x => x.product_breadcrumb_label));
      console.log(this.listCategories);
-
      response.length = 40; // juste pour le dev dans notre contexte d'apprentissage
      this.listProduct = [...response];
    });
@@ -32,10 +34,19 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
  }
 
  ngOnInit(): void {
-
  }
 
- // methode de cycle de vie de mon composant qui est executée juste avant que l'instance de mon composant soit détruite
+ minItem(newItem: any) {
+  this.min = newItem;
+  console.log(newItem)
+
+  this.subListProduct = this.plantService.subjectListProduct$.subscribe(response => {
+    this.listProduct = response.filter(product =>
+      product.product_unitprice_ati >= newItem.min && product.product_unitprice_ati <= newItem.max);
+  });
+  this.plantService.getListProductsChaud();
+}
+
  ngOnDestroy(): void {
    this.subListProduct.unsubscribe();
  }

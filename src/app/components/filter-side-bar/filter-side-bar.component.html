@@ -18,14 +18,24 @@
         <div class="p-3">
             <p class="mb-1 fs-5 fw-semibold">Prix</p>
            
-            <form #priceForm="ngForm" (ngSubmit)="onFormSubmit(priceForm)" >
+            <!-- <form #priceForm="ngForm" (ngSubmit)="onFormSubmit(priceForm)" >
                 <div data-role="rangeslider">
-                  <input ngModel type="range" name="price-min" id="price-min" value="0" min="0" max="300">
-                  <input ngModel type="range" name="price-max" id="price-max" value="300" min="0" max="300">
+                  <input ngModel type="range" name="price_min" id="price-min" value="price-min" min="0" max="300">
+                  <input ngModel type="range" name="price_max" id="price-max" value="price-max" min="0" max="300">
                 </div>
                   <button class="btn btn-primary">Valider</button>
-                </form>
+            </form> -->
 
+            <!-- <p>Value: {{sliderControl.value}}</p>
+            <p><button (click)="resetForm()">Reset</button></p>
+            <ngx-slider [options]="options" [formControl]="sliderControl"></ngx-slider> -->
+
+            <form [formGroup]="sliderForm">
+                <!-- <p>Low value: {{ sliderForm.value.sliderControl[0] }}</p>
+                <p>High value: {{ sliderForm.value.sliderControl[1] }}</p> -->
+                <ngx-slider [options]="options" formControlName="sliderControl"></ngx-slider>
+                <p><button (click)="submitForm()">Valider</button></p>
+              </form>
         </div>
     </ul>
 
