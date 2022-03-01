@@ -56,9 +56,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
 
-    - name: Install Angular
-      run: npm i @angular/cli
-
     steps:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
@@ -67,3 +64,6 @@ jobs:
           heroku_app_name: "la-belle-plante-workflow" #Must be unique in Heroku
           heroku_email: "ledijiv830@shackvine.com"
     #  TO COMPLETE TO DEPLOY
+    
+    - name: Install Angular
+      run: npm i @angular/cli
