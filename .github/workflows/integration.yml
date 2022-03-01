@@ -55,11 +55,11 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    steps:
-      
-      - name: Install Angular
-         run: npm i @angular/cli
 
+    - name: Install Angular
+      run: npm i @angular/cli
+
+    steps:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
