@@ -13,7 +13,7 @@ app.listen(process.env.PORT || 8080, ()=>{
 
 const jsonServer = require('json-server');
 const server = jsonServer.create();
-const router = jsonServer.router('dist/la-belle-plante/data.json');
+const router = jsonServer.router('./src/data.json');
 const middlewares = jsonServer.defaults();
 const port = 3000;
 
