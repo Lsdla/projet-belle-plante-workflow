@@ -5,20 +5,21 @@ app.use(express.static(__dirname + '/dist/la-belle-plante'));
 app.get('/*', function(req,res) {
 res.sendFile(path.join(__dirname+
 '/dist/la-belle-plante/index.html'));});
+console.log("Web Server Starting ...");
+
 app.listen(process.env.PORT || 8080);
 
+console.log("Web Server Start success !");
+const jsonServer = require('json-server');
+const server = jsonServer.create();
+const router = jsonServer.router('/dist/la-belle-plante/data.json');
+const middlewares = jsonServer.defaults();
+const port = process.env.PORT || 3000;
 
-const jsonServer = require('json-server')
-const server = jsonServer.create()
-const router = jsonServer.router('dist/la-belle-plante/data.json')
+console.log("Json Server Starting ...");
 
-const middlewares = jsonServer.defaults()
+server.use(middlewares);
+server.use(router);
 
-server.use(middlewares)
-server.use(router)
-
-const port = process.env.PORT || 3000
-
-server.listen(port, () => {
-    console.log(`JSON Server is running on port ${port}`)
-})
+server.listen(port);
+console.log("Json Server Start success.");
