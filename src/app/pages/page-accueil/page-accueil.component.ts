@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { $ } from 'protractor';
 import { Observable, Subscription } from 'rxjs';
 import { PlantService } from 'src/app/services/plant.service';
@@ -12,12 +13,13 @@ import * as _ from 'underscore';
 export class PageAccueilComponent implements OnInit, OnDestroy {
  // private data!: any[]; same as below
  private data: any[] | undefined;
+ private dataPlant: any[] | undefined;
  public listCategories!: string[];
  private subListProduct: Subscription;
  public listProduct!: any[];
+ searchText:string;
 
  constructor(private plantService: PlantService) {
-
    this.subListProduct = this.plantService.subjectListProduct$.subscribe(response => {
      console.log(response);
      this.data = response;
@@ -34,6 +36,12 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
  ngOnInit(): void {
 
  }
+
+  // search(event:any) {
+  //   this.subListProduct = this.plantService.getListProducts().subscribe(resp => {
+  //     this.listProduct = resp.filter(x => x.product_name.includes(event.value));
+  //   })
+  // }
 
  // methode de cycle de vie de mon composant qui est executée juste avant que l'instance de mon composant soit détruite
  ngOnDestroy(): void {

@@ -13,6 +13,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { CardPlantComponent } from './components/card-plant/card-plant.component';
 import { IconComponent } from './components/icon/icon.component';
 import { AvisBarComponent } from './components/avis-bar/avis-bar.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,10 @@ import { AvisBarComponent } from './components/avis-bar/avis-bar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng2SearchPipeModule,
+    FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
