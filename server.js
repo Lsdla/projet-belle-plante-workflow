@@ -9,12 +9,12 @@ console.log("Web Server Starting ...");
 
 app.listen(process.env.PORT || 8080);
 
-console.log("Web Server Start success !");
+console.log("Web Server Start success ! on port "+ process.env.PORT || 8080);
 const jsonServer = require('json-server');
 const server = jsonServer.create();
 const router = jsonServer.router('./dist/la-belle-plante/data.json');
 const middlewares = jsonServer.defaults();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 console.log("Json Server Starting ...");
 
@@ -23,3 +23,4 @@ server.use(router);
 
 server.listen(port);
 console.log("Json Server Start success.");
+
