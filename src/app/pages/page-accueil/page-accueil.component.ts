@@ -3,6 +3,9 @@ import { $ } from 'protractor';
 import { Observable, Subscription } from 'rxjs';
 import { PlantService } from 'src/app/services/plant.service';
 import * as _ from 'underscore';
+import {Product} from '../../model/product';
+import {ProductService} from '../../services/product.service';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-page-accueil',
@@ -15,8 +18,12 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
  public listCategories!: string[];
  private subListProduct: Subscription;
  public listProduct!: any[];
+ public products$!: Observable<Array<Product>>;
 
- constructor(private plantService: PlantService) {
+ constructor(
+   private plantService: PlantService,
+   private productService: ProductService
+   ) {
 
    this.subListProduct = this.plantService.subjectListProduct$.subscribe(response => {
      console.log(response);
@@ -31,9 +38,28 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
    this.plantService.getListProductsChaud();
  }
 
- ngOnInit(): void {
-  return;
+
+ ngOnInit(): void{
+   this.products$ = this.productService.getAll();
  }
+
+  onCateg(categories: Array<string>) {
+    console.log(categories);
+    if (categories.length != 0){
+      this.products$ = this.productService.getAll().pipe(
+        map((products:Array<any>) => {
+          console.log(products);
+          return _.filter(products, function (product){
+            let categoryLabel:any = product.product_breadcrumb_label
+            return categories.includes(categoryLabel);
+          })
+        })
+      )
+
+    } else {
+      this.products$ = this.productService.getAll();
+    }
+  }
 
  // methode de cycle de vie de mon composant qui est executée juste avant que l'instance de mon composant soit détruite
  ngOnDestroy(): void {
