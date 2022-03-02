@@ -1,5 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import * as _ from 'underscore';
+import { Options } from "@angular-slider/ngx-slider";
+
 
 @Component({
   selector: 'app-filter-side-bar',
@@ -12,6 +15,16 @@ export class FilterSideBarComponent implements OnInit {
   listCategories: string[] = [];
   @Output() handleCateg = new EventEmitter<Array<string>>();
 
+
+
+  sliderForm: FormGroup = new FormGroup({
+    sliderControl: new FormControl([0, 100])
+  });
+  options: Options = {
+    floor: 0,
+    ceil: 100,
+    step: 5
+  };
   constructor() {
     this.listCategoriesFilter = [];
    }
@@ -33,5 +46,7 @@ export class FilterSideBarComponent implements OnInit {
     console.log(this.listCategories);
     this.handleCateg.emit(this.listCategories);
   }
+
+
 
 }

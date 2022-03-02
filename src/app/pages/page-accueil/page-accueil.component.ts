@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, Output } from '@angular/core';
 import { $ } from 'protractor';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { PlantService } from 'src/app/services/plant.service';
 import * as _ from 'underscore';
 import {Product} from '../../model/product';
@@ -18,7 +18,10 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
  public listCategories!: string[];
  private subListProduct: Subscription;
  public listProduct!: any[];
- public products$!: Observable<Array<Product>>;
+
+public products$!: Observable<Array<Product>>; min;
+ max;
+ subject$ = new Subject();
 
  constructor(
    private plantService: PlantService,
@@ -30,7 +33,6 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
      this.data = response;
      this.listCategories = _.uniq(this.data.map(x => x.product_breadcrumb_label));
      console.log(this.listCategories);
-
      response.length = 40; // juste pour le dev dans notre contexte d'apprentissage
      this.listProduct = [...response];
    });
@@ -38,13 +40,22 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
    this.plantService.getListProductsChaud();
  }
 
-
  ngOnInit(): void{
    this.products$ = this.productService.getAll();
  }
 
+ minItem(newItem: any) {
+  this.min = newItem;
+  console.log(newItem)
 
-  onCateg(categories: Array<string>) {
+  this.subListProduct = this.plantService.subjectListProduct$.subscribe(response => {
+    this.listProduct = response.filter(product =>
+      product.product_unitprice_ati >= newItem.min && product.product_unitprice_ati <= newItem.max);
+  });
+  this.plantService.getListProductsChaud();
+}
+
+onCateg(categories: Array<string>) {
     console.log(categories);
     if (categories.length != 0){
       this.products$ = this.productService.getAll().pipe(
@@ -63,7 +74,7 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
   }
 
 
- // methode de cycle de vie de mon composant qui est executÃ©e juste avant que l'instance de mon composant soit dÃ©truite
+ // methode de cycle de vie de mon composant qui est executée juste avant que l'instance de mon composant soit détruite
  ngOnDestroy(): void {
    this.subListProduct.unsubscribe();
  }

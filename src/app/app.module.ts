@@ -13,6 +13,9 @@ import {HttpClientModule} from '@angular/common/http';
 import { CardPlantComponent } from './components/card-plant/card-plant.component';
 import { IconComponent } from './components/icon/icon.component';
 import { AvisBarComponent } from './components/avis-bar/avis-bar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+
 
 @NgModule({
   declarations: [
@@ -25,12 +28,16 @@ import { AvisBarComponent } from './components/avis-bar/avis-bar.component';
     FilterSideBarComponent,
     CardPlantComponent,
     IconComponent,
-    AvisBarComponent
+    AvisBarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule  ],
+    HttpClientModule,
+    FormsModule,
+    NgxSliderModule,
+    ReactiveFormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
