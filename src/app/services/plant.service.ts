@@ -87,6 +87,8 @@ export class PlantService {
       this.subjectListProduct$.next(data);
     });
   }
-
-
+// http://localhost:3000/list_products?product_id=952438
+  getById(product_id: number) {
+    return this.http.get<any[]>(`${this.baseUrl}/list_products?product_id=${product_id}`);
+  }
 }
