@@ -1,1 +1,27 @@
-<p>page-details works!</p>
+<div class="container">
+  <div class="details-container">
+    <div class="img-container">
+      <img src="{{plant?.product_url_picture}}" class="img" alt="image de {{plant?.product_name}}">
+    </div>
+    <div class="description-container">
+      <div class="card-body">
+        <h4 class="card-title">{{plant?.product_name}}</h4>
+        <p><small class="categ">{{plant?.product_breadcrumb_label}}</small></p>
+        <app-avis-bar></app-avis-bar>
+        <h5 class="price">{{plant?.product_unitprice_ati}} €</h5>
+        <div class="icon">
+          <i class="bi bi-exclamation-circle"></i>
+          <small class="reste-article">  Les articles sont {{plant?.product_instock}}</small>
+        </div>
+        <h5>Caracteristiques</h5>
+        <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore cupiditate quae ab nisi iste, doloremque quo in officia commodi saepe porro explicabo veritatis tenetur, cumque debitis molestiae blanditiis nulla maxime.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+        <div class="buttons">
+          <button type="button" class="button add">Ajouter au panier</button>
+          <button type="button" class="button retour" onclick="history.back(-1)">Retour</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+.details-container{
+  display: flex;
+  height: auto;
+
+  .img-container{
+    height: auto;
+    width: 40%;
+    margin: 1rem;
+    .img{
+      // height: 100%;
+      width: 100%;
+    }
+  }
+
+  .description-container{
+
+    .categ{
+      color: green;
+      margin-bottom: 0;
+    }
+    .price{
+      color: red;
+    }
+
+    .icon{
+      .reste-article{
+        font-size: x-small;
+        color: green;
+      }
+    }
+
+    .buttons{
+      display: flex;
+      justify-content: space-between;
+
+    .button{
+      background-color: green;
+      height: 40px;
+      width: auto;
+      color: white;
+      padding: 0 1rem;
+      border-radius: 20px;
+      border: none;
+    }
+
+    .retour{
+      background-color: red !important;
+    }
+    }
+  }
+}
