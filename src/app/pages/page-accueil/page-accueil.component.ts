@@ -65,5 +65,5 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
  ngOnDestroy(): void {
    this.subListProduct.unsubscribe();
  }
-
+//test
 }
