@@ -43,6 +43,7 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
    this.products$ = this.productService.getAll();
  }
 
+
   onCateg(categories: Array<string>) {
     console.log(categories);
     if (categories.length != 0){
@@ -60,6 +61,7 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
       this.products$ = this.productService.getAll();
     }
   }
+
 
  // methode de cycle de vie de mon composant qui est executée juste avant que l'instance de mon composant soit détruite
  ngOnDestroy(): void {
