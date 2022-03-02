@@ -10,7 +10,7 @@ import * as _ from 'underscore';
   templateUrl: './page-accueil.component.html',
   styleUrls: ['./page-accueil.component.scss']
 })
-export class PageAccueilComponent implements OnInit, OnDestroy {
+export class PageAccueilComponent implements  OnDestroy {
  // private data!: any[]; same as below
  private data: any[] | undefined;
  private dataPlant: any[] | undefined;
@@ -28,22 +28,37 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
 
      response.length = 40; // juste pour le dev dans notre contexte d'apprentissage
      this.listProduct = [...response];
-   });
+    //  this.data.sort(function (a, b) {
+    //   return a.localeCompare(b);
+    // });
+  });
+
+  //  this.data.sort(function (a, b) {
+  //   return a.localeCompare(b);
+  //   using String.prototype.localCompare()
+  // });
 
    this.plantService.getListProductsChaud();
  }
 
- ngOnInit(): void {
 
- }
 
-  // search(event:any) {
+//  var items = ['réservé', 'premier', 'communiqué', 'café', 'adieu', 'éclair'];
+// items.sort(function (a, b) {
+//   return a.localeCompare(b); //using String.prototype.localCompare()
+// });
+//  ngOnInit(): void {
+
+//  }
+
+  // search(event:any) {//autre methode search
   //   this.subListProduct = this.plantService.getListProducts().subscribe(resp => {
   //     this.listProduct = resp.filter(x => x.product_name.includes(event.value));
   //   })
   // }
 
  // methode de cycle de vie de mon composant qui est executée juste avant que l'instance de mon composant soit détruite
+
  ngOnDestroy(): void {
    this.subListProduct.unsubscribe();
  }
