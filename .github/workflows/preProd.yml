@@ -1,7 +1,7 @@
-name: CI-CD
-on: 
+name: CI-CD - PreProd
+on:
   push:
-    branches: [ main ]
+    branches: [ pre-prod ]
 
   workflow_dispatch:
 
@@ -10,57 +10,58 @@ jobs:
   test:
 
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Use Node.js
       uses: actions/setup-node@v2
-      with: 
+      with:
         node-version: '16.x'
 
     - uses: actions/checkout@v2
 
     - name: Install dependencies
       run: npm install
-    
+
     - name: lint
       run: npm run lint
-    
+
     - name: Unit tests
       run: npm run test
-    
-  build: 
+
+ build:
     needs: test
     runs-on: ubuntu-latest
 
     steps:
     - name: Use Node.js
       uses: actions/setup-node@v2
-      with: 
+      with:
         node-version: '16.x'
 
     - uses: actions/checkout@v2
 
     - name: Install dependencies
       run: npm install
-      
+
     - name: Build app
-      run: npm run build:prod
-    
+      run: npm run build --prod
+
     - name: Upload artifact
       uses: actions/upload-artifact@v2
-      with: 
+      with:
         name: devops-test-${{ github.run_id }}-${{ github.run_number }}
         path: ./dist/devops-test
 
-  deploy: 
+  deploy:
     needs: build
     runs-on: ubuntu-latest
-
-    steps: 
-    - name: Download artifact
-      uses: actions/download-artifact@v2
-      with: 
-        name: devops-test-${{ github.run_id }}-${{ github.run_number }} 
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+    - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: "la-belle-plante-workflow" #Must be unique in Heroku
+        heroku_email: "ledijiv830@shackvine.com"
+        name: devops-test-${{ github.run_id }}-${{ github.run_number }}
         path: './build'
-    
-    #  TO COMPLETE TO DEPLOY
