@@ -8,7 +8,7 @@ import { PagePanierComponent } from './pages/page-panier/page-panier.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: PageAccueilComponent, pathMatch: 'full'},
-  { path: 'details', component: PageDetailsComponent },
+  { path: 'list_products/:product_id', component: PageDetailsComponent },
   { path: 'panier', component: PagePanierComponent },
   { path: '**', component: PageNotFoundComponent }
 ];

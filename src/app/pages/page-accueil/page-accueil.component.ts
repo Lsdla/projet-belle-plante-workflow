@@ -38,6 +38,7 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
    this.plantService.getListProductsChaud();
  }
 
+
  ngOnInit(): void{
    this.products$ = this.productService.getAll();
  }

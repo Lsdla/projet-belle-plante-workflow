@@ -10,6 +10,7 @@ export class PagePanierComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    return;
   }
 
 }

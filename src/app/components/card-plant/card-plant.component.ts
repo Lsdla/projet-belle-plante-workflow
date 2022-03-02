@@ -12,6 +12,7 @@ export class CardPlantComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    return;
   }
 
 }

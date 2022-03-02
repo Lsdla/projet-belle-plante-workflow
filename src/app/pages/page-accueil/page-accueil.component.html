@@ -1,4 +1,5 @@
 <div class="d-flex align-items-stretch">
+
     <app-filter-side-bar [listCategoriesFilter]="listCategories" (handleCateg)="onCateg($event)"></app-filter-side-bar>
     <!-- Ici on communique du parent vers l'enfant à l'aide du property binding
         la propriété de l'enfant possède un décorateur @Input pour rendre sa valeur
@@ -7,6 +8,8 @@
     <div class="custom-main container p-3" *ngIf="products$ | async as products">
         <input class="form-control" type="text" placeholder="Recherche ta belle plante"
             aria-label="Recherche ta belle plante">
+
+
 
         <div class="py-3">
             Trier par :
