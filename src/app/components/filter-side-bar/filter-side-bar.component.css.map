@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,gBAAgB,CAAC;EACb,UAAU,EAAE,kBAAkB;EAC9B,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,KAAK;CACf",
-    "sources": [
-        "filter-side-bar.component.scss"
-    ],
-    "names": [],
-    "file": "filter-side-bar.component.css"
-}
