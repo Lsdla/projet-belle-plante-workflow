@@ -14,12 +14,13 @@ export class FilterSideBarComponent implements OnInit {
   @Input() listCategoriesFilter: string[];
   listCategories: string[] = [];
   @Output() handleCateg = new EventEmitter<Array<string>>();
-
+  @Output() range = new EventEmitter<any>();
 
 
   sliderForm: FormGroup = new FormGroup({
     sliderControl: new FormControl([0, 100])
   });
+
   options: Options = {
     floor: 0,
     ceil: 100,
@@ -47,6 +48,11 @@ export class FilterSideBarComponent implements OnInit {
     this.handleCateg.emit(this.listCategories);
   }
 
-
+submitForm(): void {
+    this.range.emit({
+      min: this.sliderForm.value.sliderControl[0],
+      max: this.sliderForm.value.sliderControl[1]
+    })
+  }
 
 }
