@@ -13,6 +13,7 @@ export class IconComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    return;
   }
 
 }
