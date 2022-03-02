@@ -10,7 +10,7 @@ console.log("Web Server Starting ...");
 app.listen(process.env.PORT || 8080, ()=>{
   console.log("Web Server Start success ! on port " + process.env.PORT || 8080);
 });
-
+/*
 const jsonServer = require('json-server');
 const server = jsonServer.create();
 const router = jsonServer.router('./src/data.json');
@@ -25,5 +25,5 @@ server.use(router);
 server.listen(port, ()=>{
   console.log("Json Server Start success on port : " + port);
 });
-
+*/
 
