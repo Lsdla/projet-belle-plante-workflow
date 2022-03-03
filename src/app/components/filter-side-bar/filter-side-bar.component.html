@@ -39,4 +39,39 @@
         </div>
     </ul>
 
+
+    <ul class="list-unstyled ps-0 border-top">
+        <div class="p-3">
+            <p class="mb-1 fs-5 fw-semibold">Avis</p>
+         
+    <div (mouseleave)="onMouseLeave()">
+            <app-icon *ngFor="let star of starStates; let starIndex = index" 
+            [name]="star.stateHoverUser ? 'star-fill' : 'star'"
+            [size]="1.2"
+            [color]="'#ffbf00'"
+            (mouseover)="onMouseOver(starIndex)"
+            (click)="onClickStar(starIndex)"
+            ></app-icon>
+        </div>
+
+        </div>
+    
+    </ul>
+
+
+
+
+    <!-- <div class="star-rating-container star-rating-animation" fxLayout="row" fxLayoutAlign="start center" >
+
+        <div *ngFor="let star of stars" [ngClass]="[star.class]" (click)="selectStar(star.id)">
+            <app-icon [name]="'star'" 
+            id="5"
+            [size]="1.2" 
+            [color]="'#ffbf00'"></app-icon>
+        </div>
+
+
+
+    </div> -->
+
 </div>

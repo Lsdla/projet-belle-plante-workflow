@@ -18,6 +18,8 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
  min;
  max;
  subject$ = new Subject();
+ numberStar;
+newItem;
 
  constructor(private plantService: PlantService) {
 
@@ -26,7 +28,7 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
      this.data = response;
      this.listCategories = _.uniq(this.data.map(x => x.product_breadcrumb_label));
      console.log(this.listCategories);
-     response.length = 40; // juste pour le dev dans notre contexte d'apprentissage
+    // response.length = 288; // juste pour le dev dans notre contexte d'apprentissage
      this.listProduct = [...response];
    });
 
@@ -38,7 +40,7 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
 
  minItem(newItem: any) {
   this.min = newItem;
-  console.log(newItem)
+//  console.log(newItem)
 
   this.subListProduct = this.plantService.subjectListProduct$.subscribe(response => {
     this.listProduct = response.filter(product =>
@@ -49,6 +51,20 @@ export class PageAccueilComponent implements OnInit, OnDestroy {
 
  ngOnDestroy(): void {
    this.subListProduct.unsubscribe();
+ }
+
+ star(number: number){
+   this.numberStar = number;
+   //console.log(this.numberStar);
+
+
+   this.subListProduct = this.plantService.subjectListProduct$.subscribe(response => {
+    this.listProduct = response.filter(product =>
+      product.product_avis == this.numberStar );
+  });
+  this.plantService.getListProductsChaud();
+
+
  }
 
 }
